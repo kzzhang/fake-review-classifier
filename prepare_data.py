@@ -34,7 +34,6 @@ def get_validation_dataset():
   columns_to_remove = [
     'Date',
     'reviewerID',
-    'label',
     'misc1',
     'misc2',
     'misc3'
@@ -55,7 +54,6 @@ def get_testing_dataset():
   # Modify dataset and remove unnecessary columns
   columns_to_remove = [
     'reviewerID',
-    'label',
     'Date'
   ]
   df = ydp.modify_yelp_dataset(df, columns_to_remove)
