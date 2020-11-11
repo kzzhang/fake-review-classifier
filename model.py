@@ -78,7 +78,6 @@ class Model:
             output[0] = True
         return output
 
-
     def train(self, arrays, num_repetitions, use_sentiment_variability):
         data = arrays
         self.use_sentiment = use_sentiment_variability
@@ -100,9 +99,10 @@ class Model:
         return self.label_map[self.model.predict(scaled)[0]]
 
 # example usage
-model = Model()
-a = np.array([[0,0,0,0], [1,1,1,1], [9999,9999,9999,0]])
-model.train(a, 10, True)
-b = np.array([10,10,10,10])
-outcome = model.classify(b)
-print(outcome)
+if __name__ == "__main__":
+    model = Model()
+    a = np.array([[0,0,0,0], [1,1,1,1], [9999,9999,9999,0]])
+    model.train(a, 10, True)
+    b = np.array([10,10,10,10])
+    outcome = model.classify(b)
+    print(outcome)
