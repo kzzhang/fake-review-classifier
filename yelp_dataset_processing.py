@@ -36,9 +36,11 @@ def parse_yelpChi_dataset(metadata_filepath, review_filepath):
     'misc3',
     'rating'
   ]
-
   df = pd.DataFrame(reviews_metadata, columns=column_names)
   df['reviewText'] = reviews
+
+  # Map labels as follows: 0 = fake, 1 = genuine
+  df['label'] = df['label'].apply(lambda x: 0 if x == 'Y' else 1)
 
   return df
 
@@ -55,9 +57,12 @@ def parse_yelpNYC_dataset(metadata_filepath, review_filepath):
     'label',
     'Date'
   ]
-
   df = pd.DataFrame(reviews_metadata, columns=column_names)
   df['reviewText'] = reviews
+
+  # Map labels as follows: 0 = fake, 1 = genuine
+  df['label'] = pd.to_numeric(df['label'])
+  df['label'] = df['label'].apply(lambda x: 0 if x == -1 else 1)
 
   return df
 
@@ -82,7 +87,6 @@ def modify_yelp_dataset(df, columns_to_remove):
     df.drop(column, axis=1, inplace=True)
 
   # Reset index
-  df.reset_index(drop=True)
   df.index = range(len(df))
 
   # Reorder columns
@@ -92,7 +96,8 @@ def modify_yelp_dataset(df, columns_to_remove):
     'reviewText',
     'reviewTextLength',
     'rating',
-    'daysSinceFirstReview'
+    'daysSinceFirstReview',
+    'label'
   ]
   df = df[column_order]
 
