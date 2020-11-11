@@ -82,7 +82,7 @@ def modify_yelp_dataset(df, columns_to_remove):
     df.drop(column, axis=1, inplace=True)
 
   # Reset index
-  df.reset_index()
+  df.reset_index(drop=True)
   df.index = range(len(df))
 
   # Reorder columns
