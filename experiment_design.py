@@ -1,6 +1,10 @@
 from feature_conversion import convert_to_features
 from naive_model import NaiveModel
+from model import Model
 from sklearn.metrics import matthews_corrcoef,f1_score,accuracy_score
+
+def methods():
+    return ['VADER', 'TextBlob', 'SentiWordNet']
 
 def calculate_scores(model, data, labels):
     if(len(data)!=len(labels)):
@@ -83,22 +87,27 @@ fake_test_labels = get_labels(fake_test)
 
 METHODS = ['VADER', 'TextBlob', 'SentiWordNet']
 # Training
-def training(): #return 3 candidate models, one for VADER, TextBlob and SentiNet
+def training(features_map, use_naive_model, use_sentiment_variability): #return 3 candidate models, one for VADER, TextBlob and SentiNet
     training_models = []
     for method in METHODS:
-        training_data = convert_to_features(fake_training,method)
-        model = NaiveModel() # This is the naiive model, sub this out as needed
-        model.train(training_data)
+        training_data = features_map.get(method)
+        model = None
+        if use_naive_model:
+            model = NaiveModel()
+            model.train(training_data)
+        else:
+            model = Model()
+            model.train(training_data, 100, use_sentiment_variability)
         training_models.append(model)
     return training_models
 
-def validate(candidate_models): #take in three models and return 1 based on MCC
+def validate(candidate_models, features_map, labels): #take in three models and return 1 based on MCC
     best_mcc_abs = 0
     best_mcc = 0
     best_mcc_index = 0
     for i in range(len(METHODS)):
-        validate_data = convert_to_features(fake_validate, METHODS[i])
-        _,_, mcc = calculate_scores(candidate_models[i], validate_data, fake_validate_labels)
+        validate_data = features_map.get(METHODS[i])
+        _,_, mcc = calculate_scores(candidate_models[i], validate_data, labels)
         if abs(mcc)>best_mcc_abs:
             best_mcc_abs = abs(mcc)
             best_mcc = mcc
@@ -121,6 +130,6 @@ if __name__ == "__main__":
     training_models = training()
     best_model_idx = validate(training_models)
     best_model = training_models[best_model_idx]
-    best_method = METHODS[best_model_idx]
+    best_method = methods()[best_model_idx]
     print(f'Testing using {best_method} method')
     test(best_model, best_method) 
