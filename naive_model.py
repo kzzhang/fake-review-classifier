@@ -11,6 +11,6 @@ class NaiveModel:
 
     # Input list of data with columns:
     #   Review Id, Review length, Rating/sentiment agreement, Review date, sentiment variability
-    def train(self,training_data):
+    def train(self,training_data, target_real_percent):
         sentiments = training_data[:,4].astype(float)
-        self.sentiment_threshold = np.percentile(sentiments,30)
+        self.sentiment_threshold = np.percentile(sentiments,100-target_real_percent)

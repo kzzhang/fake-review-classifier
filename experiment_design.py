@@ -2,6 +2,7 @@ from feature_conversion import convert_to_features
 from naive_model import NaiveModel
 from model import Model
 from sklearn.metrics import matthews_corrcoef,f1_score,accuracy_score
+import numpy as np
 
 def methods():
     return ['VADER', 'TextBlob', 'SentiWordNet']
@@ -72,24 +73,14 @@ sample_review_5 = [
 ]
 
 def get_labels(data):
-    labels = []
-    for row in data:
-        labels.append(row[-1]) # last element is label
-    return labels
+    labels = data["label"]
+    return np.asarray(labels)
 
-fake_training = [sample_review]
-
-fake_validate = [sample_review_4, sample_review_2, sample_review_3, sample_review]
-fake_validate_labels = get_labels(fake_validate)
-
-fake_test = [sample_review_4, sample_review_2, sample_review_3, sample_review]
-fake_test_labels = get_labels(fake_test)
-
-METHODS = ['VADER', 'TextBlob', 'SentiWordNet']
 # Training
 def training(features_map, use_naive_model, use_sentiment_variability): #return 3 candidate models, one for VADER, TextBlob and SentiNet
     training_models = []
-    for method in METHODS:
+    for method in methods():
+        method_models = []
         training_data = features_map.get(method)
         model = None
         if use_naive_model:
@@ -97,7 +88,7 @@ def training(features_map, use_naive_model, use_sentiment_variability): #return 
             model.train(training_data)
         else:
             model = Model()
-            model.train(training_data, 100, use_sentiment_variability)
+            model.train(training_data, 100, use_sentiment_variability, 70.0)
         training_models.append(model)
     return training_models
 
@@ -105,31 +96,23 @@ def validate(candidate_models, features_map, labels): #take in three models and 
     best_mcc_abs = 0
     best_mcc = 0
     best_mcc_index = 0
-    for i in range(len(METHODS)):
-        validate_data = features_map.get(METHODS[i])
+    for i in range(len(methods())):
+        validate_data = features_map.get(methods()[i])
         _,_, mcc = calculate_scores(candidate_models[i], validate_data, labels)
         if abs(mcc)>best_mcc_abs:
             best_mcc_abs = abs(mcc)
             best_mcc = mcc
             best_mcc_index = i
-        print(f'VALIDATION: MCC using {METHODS[i]} is {mcc}')
+        print(f'VALIDATION: MCC using {methods()[i]} is {mcc}')
 
     if(best_mcc<0):
         print("Need to switch labels!")
+ #       candidate_models[i].switch_labels()
         # Need to switch labels, flag, don't expect this happens, in case it does,
         # will need to handle
     return best_mcc_index
 
 
-def test(model, senti_method):
-    testing_data = convert_to_features(fake_test, senti_method)
-    accuracy,f1score,mcc = calculate_scores(model, testing_data, fake_test_labels)
+def test(model, features, labels):
+    accuracy,f1score,mcc = calculate_scores(model, features, labels)
     print(f"Test model accuracy:{accuracy}, f1score: {f1score}, mcc: {mcc}")
-
-if __name__ == "__main__":
-    training_models = training()
-    best_model_idx = validate(training_models)
-    best_model = training_models[best_model_idx]
-    best_method = methods()[best_model_idx]
-    print(f'Testing using {best_method} method')
-    test(best_model, best_method) 

@@ -34,10 +34,9 @@ class Model:
             output.append(inner)
         return np.asarray(output)
 
-    def __repeated_kmeans(self, arrays, num_repetitions):
+    def __repeated_kmeans(self, arrays, num_repetitions, target_real_percent):
         best_model = None
         best_real_percent = 0.0
-        target_real_percent = 70.0
         for i in range(num_repetitions):
             kmeans = KMeans(n_clusters=2, n_init=1).fit(arrays)
             labels = kmeans.labels_
@@ -78,14 +77,14 @@ class Model:
             output[0] = True
         return output
 
-    def train(self, arrays, num_repetitions, use_sentiment_variability):
+    def train(self, arrays, num_repetitions, use_sentiment_variability, target_real_percent):
         data = arrays
         self.use_sentiment = use_sentiment_variability
         if not use_sentiment_variability:
             data = self.__remove_sentiment_variability(data)
         cleaned_data = self.__remove_outliers(data)
         scaled_data = self.scaler.fit_transform(cleaned_data)
-        self.model = self.__repeated_kmeans(scaled_data, num_repetitions)
+        self.model = self.__repeated_kmeans(scaled_data, num_repetitions, target_real_percent)
         self.label_map = self.__get_label_mapping(self.model)
 
     # Classifies a review (1-d array) as real (true) or fake (false)

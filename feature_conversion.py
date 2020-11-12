@@ -47,8 +47,8 @@ def convert_to_features(data, sentiment_analysis_method):
     output = []
     for review in data:
         rating_agreement,sentiment_variability = calculate_sentiment_vals(
-            review[2],review[4],sentiment_analysis_method)
-        output.append(np.array([review[0], # review ID
+            review[2],float(review[4]),sentiment_analysis_method)
+        output.append(np.array([\
                                 review[3], # review length
                                 rating_agreement, #rating/sentiment agreement
                                 review[5], #days since first review of product
