@@ -80,37 +80,59 @@ def get_labels(data):
 def training(features_map, use_naive_model, use_sentiment_variability): #return 3 candidate models, one for VADER, TextBlob and SentiNet
     training_models = []
     for method in methods():
+        print("\t\tTraining models for method: " + method)
         method_models = []
         training_data = features_map.get(method)
-        model = None
-        if use_naive_model:
-            model = NaiveModel()
-            model.train(training_data)
-        else:
-            model = Model()
-            model.train(training_data, 100, use_sentiment_variability, 70.0)
-        training_models.append(model)
+        for i in np.arange(70, 90.5, 0.5):
+            model = None
+            if use_naive_model:
+                model = NaiveModel()
+                model.train(training_data, i)
+            else:
+                model = Model()
+                model.train(training_data, 100, use_sentiment_variability, i)
+            method_models.append(model)
+        training_models.append(method_models)
     return training_models
 
-def validate(candidate_models, features_map, labels): #take in three models and return 1 based on MCC
+def validate(candidate_models, features_map, labels): #take in three lists of models and return 1 model based on MCC
+    optimal_models = []
+    optimal_models_idx = []
+    for i in range(len(methods())):
+        print("\t\tValidating parameters for method: " + methods()[i])
+        best_mcc_abs = 0
+        best_mcc = 0
+        best_mcc_index = 0
+        # determine best model for each sentiment method
+        for j in range(len(candidate_models[0])):
+            validate_data = features_map.get(methods()[i])
+            _,_, mcc = calculate_scores(candidate_models[i][j], validate_data, labels)
+            print("\t\t\tValidation of method: " + methods()[i] + ", real percent: " + str(70 + 0.5 * j) + ", mcc: " + str(mcc))
+            if abs(mcc)>best_mcc_abs:
+                best_mcc_abs = abs(mcc)
+                best_mcc = mcc
+                best_mcc_index = j
+        optimal_models.append(candidate_models[i][best_mcc_index])
+        optimal_models_idx.append(best_mcc_index)
+
     best_mcc_abs = 0
     best_mcc = 0
     best_mcc_index = 0
+    print("\t\tChoosing best method")
     for i in range(len(methods())):
         validate_data = features_map.get(methods()[i])
-        _,_, mcc = calculate_scores(candidate_models[i], validate_data, labels)
+        _,_, mcc = calculate_scores(optimal_models[i], validate_data, labels)
         if abs(mcc)>best_mcc_abs:
             best_mcc_abs = abs(mcc)
             best_mcc = mcc
             best_mcc_index = i
-        print(f'VALIDATION: MCC using {methods()[i]} is {mcc}')
+        print(f'\t\t\tVALIDATION: MCC using {methods()[i]} and real percent {str(70 + 0.5 * optimal_models_idx[best_mcc_index])} is {mcc}')
 
     if(best_mcc<0):
         print("Need to switch labels!")
- #       candidate_models[i].switch_labels()
         # Need to switch labels, flag, don't expect this happens, in case it does,
         # will need to handle
-    return best_mcc_index
+    return best_mcc_index, optimal_models_idx
 
 
 def test(model, features, labels):
