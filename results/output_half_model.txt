@@ -1,0 +1,149 @@
+Training half model
+===================
+	loading features
+	training models
+		Training models for method: VADER
+		Training models for method: TextBlob
+		Training models for method: SentiWordNet
+Validating half model
+===================
+	loading features
+	validating model parameters
+		Validating parameters for method: VADER
+			Validation of method: VADER, real percent: 70.0, mcc: -0.05952108376392194
+			Validation of method: VADER, real percent: 70.5, mcc: -0.059363443760794034
+			Validation of method: VADER, real percent: 71.0, mcc: -0.05921631940689802
+			Validation of method: VADER, real percent: 71.5, mcc: -0.05701576028323246
+			Validation of method: VADER, real percent: 72.0, mcc: -0.05860485626862413
+			Validation of method: VADER, real percent: 72.5, mcc: -0.05984489287070981
+			Validation of method: VADER, real percent: 73.0, mcc: -0.0595167791688528
+			Validation of method: VADER, real percent: 73.5, mcc: -0.05921160389821396
+			Validation of method: VADER, real percent: 74.0, mcc: -0.0593142322672319
+			Validation of method: VADER, real percent: 74.5, mcc: -0.05957072165257592
+			Validation of method: VADER, real percent: 75.0, mcc: -0.0594468218956726
+			Validation of method: VADER, real percent: 75.5, mcc: -0.05874102411933044
+			Validation of method: VADER, real percent: 76.0, mcc: -0.05886573232454516
+			Validation of method: VADER, real percent: 76.5, mcc: -0.059758837012538174
+			Validation of method: VADER, real percent: 77.0, mcc: -0.05907078971607366
+			Validation of method: VADER, real percent: 77.5, mcc: -0.05940824089220438
+			Validation of method: VADER, real percent: 78.0, mcc: -0.058584064471556174
+			Validation of method: VADER, real percent: 78.5, mcc: -0.05947077958771123
+			Validation of method: VADER, real percent: 79.0, mcc: -0.05900747194116241
+			Validation of method: VADER, real percent: 79.5, mcc: -0.08845766196498529
+			Validation of method: VADER, real percent: 80.0, mcc: -0.08855277622388955
+			Validation of method: VADER, real percent: 80.5, mcc: -0.08836252046726101
+			Validation of method: VADER, real percent: 81.0, mcc: -0.08846955273604538
+			Validation of method: VADER, real percent: 81.5, mcc: -0.08854128043788335
+			Validation of method: VADER, real percent: 82.0, mcc: -0.08855277622388955
+			Validation of method: VADER, real percent: 82.5, mcc: -0.08854128043788335
+			Validation of method: VADER, real percent: 83.0, mcc: -0.08855277622388955
+			Validation of method: VADER, real percent: 83.5, mcc: -0.08854128043788335
+			Validation of method: VADER, real percent: 84.0, mcc: -0.08855277622388955
+			Validation of method: VADER, real percent: 84.5, mcc: -0.08855277622388955
+			Validation of method: VADER, real percent: 85.0, mcc: -0.08854128043788335
+			Validation of method: VADER, real percent: 85.5, mcc: -0.08852939336994921
+			Validation of method: VADER, real percent: 86.0, mcc: -0.08852939336994921
+			Validation of method: VADER, real percent: 86.5, mcc: -0.08854128043788335
+			Validation of method: VADER, real percent: 87.0, mcc: -0.08854128043788335
+			Validation of method: VADER, real percent: 87.5, mcc: -0.08845766196498529
+			Validation of method: VADER, real percent: 88.0, mcc: -0.08845766196498529
+			Validation of method: VADER, real percent: 88.5, mcc: -0.08855277622388955
+			Validation of method: VADER, real percent: 89.0, mcc: -0.08855277622388955
+			Validation of method: VADER, real percent: 89.5, mcc: -0.08744113447521304
+			Validation of method: VADER, real percent: 90.0, mcc: -0.08745272572280688
+		Validating parameters for method: TextBlob
+			Validation of method: TextBlob, real percent: 70.0, mcc: -0.05571020579318491
+			Validation of method: TextBlob, real percent: 70.5, mcc: -0.05242562744840911
+			Validation of method: TextBlob, real percent: 71.0, mcc: -0.05935609744330585
+			Validation of method: TextBlob, real percent: 71.5, mcc: -0.05660826994438749
+			Validation of method: TextBlob, real percent: 72.0, mcc: -0.057359955540444325
+			Validation of method: TextBlob, real percent: 72.5, mcc: -0.058855442452613684
+			Validation of method: TextBlob, real percent: 73.0, mcc: -0.0534373262577912
+			Validation of method: TextBlob, real percent: 73.5, mcc: -0.05585750296087546
+			Validation of method: TextBlob, real percent: 74.0, mcc: -0.05923329530289346
+			Validation of method: TextBlob, real percent: 74.5, mcc: -0.055381951314003176
+			Validation of method: TextBlob, real percent: 75.0, mcc: -0.0569914972121305
+			Validation of method: TextBlob, real percent: 75.5, mcc: -0.05404539142680191
+			Validation of method: TextBlob, real percent: 76.0, mcc: -0.059085952109299955
+			Validation of method: TextBlob, real percent: 76.5, mcc: -0.058895087865342824
+			Validation of method: TextBlob, real percent: 77.0, mcc: -0.0567541937842786
+			Validation of method: TextBlob, real percent: 77.5, mcc: -0.0558670672491002
+			Validation of method: TextBlob, real percent: 78.0, mcc: -0.05665319034173127
+			Validation of method: TextBlob, real percent: 78.5, mcc: -0.05892818382574961
+			Validation of method: TextBlob, real percent: 79.0, mcc: -0.08873477099374599
+			Validation of method: TextBlob, real percent: 79.5, mcc: -0.08914998156205331
+			Validation of method: TextBlob, real percent: 80.0, mcc: -0.08862589956395929
+			Validation of method: TextBlob, real percent: 80.5, mcc: -0.0884494877716428
+			Validation of method: TextBlob, real percent: 81.0, mcc: -0.08910337032219194
+			Validation of method: TextBlob, real percent: 81.5, mcc: -0.0891159474671243
+			Validation of method: TextBlob, real percent: 82.0, mcc: -0.08906786328259947
+			Validation of method: TextBlob, real percent: 82.5, mcc: -0.0887096026999458
+			Validation of method: TextBlob, real percent: 83.0, mcc: -0.08886509591279777
+			Validation of method: TextBlob, real percent: 83.5, mcc: -0.08873477099374599
+			Validation of method: TextBlob, real percent: 84.0, mcc: -0.08894800409610765
+			Validation of method: TextBlob, real percent: 84.5, mcc: -0.08891175305306391
+			Validation of method: TextBlob, real percent: 85.0, mcc: -0.08872292080812898
+			Validation of method: TextBlob, real percent: 85.5, mcc: -0.089056026786856
+			Validation of method: TextBlob, real percent: 86.0, mcc: -0.08873477099374599
+			Validation of method: TextBlob, real percent: 86.5, mcc: -0.08881771078328603
+			Validation of method: TextBlob, real percent: 87.0, mcc: -0.08888806236886662
+			Validation of method: TextBlob, real percent: 87.5, mcc: -0.0887577342319487
+			Validation of method: TextBlob, real percent: 88.0, mcc: -0.08910337032219194
+			Validation of method: TextBlob, real percent: 88.5, mcc: -0.0890796993703472
+			Validation of method: TextBlob, real percent: 89.0, mcc: -0.08849197528385741
+			Validation of method: TextBlob, real percent: 89.5, mcc: -0.08791836400365505
+			Validation of method: TextBlob, real percent: 90.0, mcc: -0.08791836400365505
+		Validating parameters for method: SentiWordNet
+			Validation of method: SentiWordNet, real percent: 70.0, mcc: -0.05722040330101117
+			Validation of method: SentiWordNet, real percent: 70.5, mcc: -0.05779169329894071
+			Validation of method: SentiWordNet, real percent: 71.0, mcc: -0.05732653632595652
+			Validation of method: SentiWordNet, real percent: 71.5, mcc: -0.057838311186488585
+			Validation of method: SentiWordNet, real percent: 72.0, mcc: -0.057653592409374885
+			Validation of method: SentiWordNet, real percent: 72.5, mcc: -0.05775099455134273
+			Validation of method: SentiWordNet, real percent: 73.0, mcc: -0.05654769728663146
+			Validation of method: SentiWordNet, real percent: 73.5, mcc: -0.055678265668586746
+			Validation of method: SentiWordNet, real percent: 74.0, mcc: -0.05735489897871883
+			Validation of method: SentiWordNet, real percent: 74.5, mcc: -0.055735106067290666
+			Validation of method: SentiWordNet, real percent: 75.0, mcc: -0.05748435448161041
+			Validation of method: SentiWordNet, real percent: 75.5, mcc: -0.055768415669299895
+			Validation of method: SentiWordNet, real percent: 76.0, mcc: -0.057632540649558514
+			Validation of method: SentiWordNet, real percent: 76.5, mcc: -0.05772994566552364
+			Validation of method: SentiWordNet, real percent: 77.0, mcc: -0.055185215541468685
+			Validation of method: SentiWordNet, real percent: 77.5, mcc: -0.05735489897871883
+			Validation of method: SentiWordNet, real percent: 78.0, mcc: -0.05780996164153477
+			Validation of method: SentiWordNet, real percent: 78.5, mcc: -0.05730183513932869
+			Validation of method: SentiWordNet, real percent: 79.0, mcc: -0.05757445098815482
+			Validation of method: SentiWordNet, real percent: 79.5, mcc: -0.057850655858107246
+			Validation of method: SentiWordNet, real percent: 80.0, mcc: -0.0580692609888082
+			Validation of method: SentiWordNet, real percent: 80.5, mcc: -0.05762524044686794
+			Validation of method: SentiWordNet, real percent: 81.0, mcc: -0.05642415846864594
+			Validation of method: SentiWordNet, real percent: 81.5, mcc: -0.057632540649558514
+			Validation of method: SentiWordNet, real percent: 82.0, mcc: -0.05584390442558412
+			Validation of method: SentiWordNet, real percent: 82.5, mcc: -0.05534834795165836
+			Validation of method: SentiWordNet, real percent: 83.0, mcc: -0.058019862515654406
+			Validation of method: SentiWordNet, real percent: 83.5, mcc: -0.05747337143438083
+			Validation of method: SentiWordNet, real percent: 84.0, mcc: -0.05748572199313357
+			Validation of method: SentiWordNet, real percent: 84.5, mcc: -0.05582897573220721
+			Validation of method: SentiWordNet, real percent: 85.0, mcc: -0.057982816170945084
+			Validation of method: SentiWordNet, real percent: 85.5, mcc: -0.0576892454575809
+			Validation of method: SentiWordNet, real percent: 86.0, mcc: -0.05612171412192544
+			Validation of method: SentiWordNet, real percent: 86.5, mcc: -0.055604195103941066
+			Validation of method: SentiWordNet, real percent: 87.0, mcc: -0.05780127860065995
+			Validation of method: SentiWordNet, real percent: 87.5, mcc: -0.0575758331474768
+			Validation of method: SentiWordNet, real percent: 88.0, mcc: -0.057498072791443866
+			Validation of method: SentiWordNet, real percent: 88.5, mcc: -0.05779169329894071
+			Validation of method: SentiWordNet, real percent: 89.0, mcc: -0.05782596675306981
+			Validation of method: SentiWordNet, real percent: 89.5, mcc: -0.05762524044686794
+			Validation of method: SentiWordNet, real percent: 90.0, mcc: -0.05709457883653709
+		Choosing best method
+			VALIDATION: MCC using VADER and real percent 80.0 is -0.08855277622388955
+			VALIDATION: MCC using TextBlob and real percent 79.5 is -0.08914998156205331
+			VALIDATION: MCC using SentiWordNet and real percent 79.5 is -0.0580692609888082
+Need to switch labels!
+Best model uses: TextBlob and real percentage: 79.5
+Testing half model
+===================
+	loading features
+	testing using test dataset
+Test model accuracy:0.7514454730791084, f1score: 0.8567723546442579, mcc: -0.07624793712738519
+Total execution time: 0:35:20.044334
